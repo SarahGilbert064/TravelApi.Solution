@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
+
 namespace TravelApi.Models
 {
   public class TravelApiContext : DbContext
@@ -7,8 +8,11 @@ namespace TravelApi.Models
     public TravelApiContext(DbContextOptions<TravelApiContext>options)
       : base(options)
       {
-
       }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+      // optionsBuilder.UseLazyLoadingProxies();
+    }
 
       protected override void OnModelCreating(ModelBuilder builder)
       {
@@ -23,5 +27,6 @@ namespace TravelApi.Models
       
 
       public DbSet<Location> Locations { get; set; }
+      public DbSet<Review> Reviews { get; set; } 
   }
 }
