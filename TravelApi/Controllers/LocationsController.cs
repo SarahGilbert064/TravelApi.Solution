@@ -48,13 +48,16 @@ namespace TravelApi.Controllers
       _db.Locations.Add(location);
       _db.SaveChanges();
     }
+
     [HttpPut("{id}")]
+    // [Authorize("{userName}")]
     public void Put(int id, [FromBody] Location location)
     {
         location.LocationId = id;
         _db.Entry(location).State = EntityState.Modified;
         _db.SaveChanges();
     }
+
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
