@@ -19,9 +19,21 @@ namespace TravelApi.Controllers
 
     //Get api/locations
     [HttpGet]
-    public ActionResult<IEnumerable<Location>> Get()
+    public ActionResult<IEnumerable<Location>> Get(string name, string rating)
     {
-      return _db.Locations.ToList();
+      var query = _db.Locations.AsQueryable();
+
+      if (name != null)
+      {
+        query = query.Where(entry => entry.Name == name);
+      }
+
+      if (rating != null)
+      {
+        query = query.Where(entry => entry.Rating == rating);
+      }
+
+      return query.ToList();
     }
     // Get specific Location from api
     [HttpGet("{id}")]
