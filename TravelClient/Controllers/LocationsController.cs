@@ -13,6 +13,5 @@ namespace TravelClient.Controllers
       var allLocations = Location.GetLocations();
       return View(allLocations);
     }
-    
   }
 }
